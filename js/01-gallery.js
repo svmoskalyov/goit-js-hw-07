@@ -1,7 +1,8 @@
 import { galleryItems } from './gallery-items.js';
-console.log(galleryItems);
 
 const galleryBox = document.querySelector('.gallery');
+
+galleryBox.addEventListener('click', onImgClick);
 
 makeGalleryMarkup(galleryItems);
 
@@ -17,4 +18,14 @@ function makeGalleryMarkup(element) {
     .join('');
 
   galleryBox.insertAdjacentHTML('beforeend', markup);
+}
+
+function onImgClick(event) {
+  event.preventDefault();
+  const imgLargeLink = event.target.dataset.source;
+  const instance = basicLightbox.create(`
+    <img src="${imgLargeLink}">
+  `);
+
+  instance.show();
 }
