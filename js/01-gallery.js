@@ -22,6 +22,10 @@ function makeGalleryMarkup(element) {
 
 function onImgClick(event) {
   event.preventDefault();
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
+
   const imgLargeLink = event.target.dataset.source;
   const instance = basicLightbox.create(`
     <img src="${imgLargeLink}">
