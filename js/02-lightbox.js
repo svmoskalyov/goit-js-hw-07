@@ -2,15 +2,13 @@ import { galleryItems } from './gallery-items.js';
 
 const galleryBox = document.querySelector('.gallery');
 
-galleryBox.addEventListener('click', onImgClick);
-
 makeGalleryMarkup(galleryItems);
 
 function makeGalleryMarkup(element) {
   const markup = element
     .map(({ preview, original, description }) => {
       return /*html*/ `<a class="gallery__item" href="${original}">
-    <img class="gallery__image" src="${preview}" alt="${description}">
+    <img class="gallery__image" src="${preview}" alt="${description}" title="${description}">
     </a>`;
     })
     .join('');
@@ -18,21 +16,6 @@ function makeGalleryMarkup(element) {
   galleryBox.insertAdjacentHTML('beforeend', markup);
 }
 
-function onImgClick(event) {
-  event.preventDefault();
-//   if (event.target.nodeName !== 'IMG') {
-//     return;
-//   }
-
-//   const imgLargeLink = event.target.dataset.source;
-//   const instance = basicLightbox.create(`
-//     <img src="${imgLargeLink}">
-//   `);
-//   instance.show();
-
-//   document.addEventListener('keydown', event => {
-//     if (event.code === 'Escape') {
-//       instance.close();
-//     }
-//   });
-}
+new SimpleLightbox('.gallery a', {
+  captionDelay: 250,
+});
