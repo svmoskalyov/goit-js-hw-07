@@ -1,4 +1,38 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
 
-console.log(galleryItems);
+const galleryBox = document.querySelector('.gallery');
+
+galleryBox.addEventListener('click', onImgClick);
+
+makeGalleryMarkup(galleryItems);
+
+function makeGalleryMarkup(element) {
+  const markup = element
+    .map(({ preview, original, description }) => {
+      return /*html*/ `<a class="gallery__item" href="${original}">
+    <img class="gallery__image" src="${preview}" alt="${description}">
+    </a>`;
+    })
+    .join('');
+
+  galleryBox.insertAdjacentHTML('beforeend', markup);
+}
+
+function onImgClick(event) {
+  event.preventDefault();
+//   if (event.target.nodeName !== 'IMG') {
+//     return;
+//   }
+
+//   const imgLargeLink = event.target.dataset.source;
+//   const instance = basicLightbox.create(`
+//     <img src="${imgLargeLink}">
+//   `);
+//   instance.show();
+
+//   document.addEventListener('keydown', event => {
+//     if (event.code === 'Escape') {
+//       instance.close();
+//     }
+//   });
+}
