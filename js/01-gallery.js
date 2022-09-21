@@ -10,7 +10,7 @@ function makeGalleryMarkup(element) {
   const markup = element
     .map(({ preview, original, description }) => {
       return /*html*/ `<div class="gallery__item">
-    <a class="gallery__link"lbox" href="${original}">
+    <a class="gallery__link" href="${original}">
     <img class="gallery__image" src="${preview}" data-source="${original}" alt="${description}">
     </a>
     </div>`;
