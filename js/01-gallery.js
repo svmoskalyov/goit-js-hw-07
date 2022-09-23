@@ -29,10 +29,26 @@ function onImgClick(event) {
   }
 
   const imgLargeLink = target.dataset.source;
-
-  const instance = basicLightbox.create(`
+  
+  const instance = basicLightbox.create(
+    `
       <img src="${imgLargeLink}">
-    `);
+    `,
+    {
+      onShow: () => {
+        document.addEventListener('keydown', pressKeyBoard);
+      },
+      onClose: () => {
+        document.removeEventListener('keydown', pressKeyBoard);
+      },
+    }
+  );
 
   instance.show();
+
+  function pressKeyBoard(event) {
+    if (event.code === 'Escape') {
+      instance.close();
+    }
+  }
 }
