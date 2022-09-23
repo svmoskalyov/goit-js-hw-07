@@ -8,7 +8,7 @@ function makeGalleryMarkup(element) {
   const markup = element
     .map(({ preview, original, description }) => {
       return /*html*/ `<a class="gallery__item" href="${original}">
-    <img class="gallery__image" src="${preview}" alt="${description}" title="${description}">
+    <img class="gallery__image" src="${preview}" alt="${description}">
     </a>`;
     })
     .join('');
@@ -18,4 +18,5 @@ function makeGalleryMarkup(element) {
 
 new SimpleLightbox('.gallery a', {
   captionDelay: 250,
+  captionsData: 'alt',
 });
